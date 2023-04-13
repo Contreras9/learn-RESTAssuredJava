@@ -20,4 +20,30 @@ public class Payload {
                 "    \"language\": \"French-IN\"\n" +
                 "}";
     }
+
+    public static String coursePrice() {
+        return "{\n" +
+                "  \"dashboard\": {\n" +
+                "    \"purchaseAmount\": 910,\n" +
+                "    \"website\": \"rahulshettyacademy.com/\"\n" +
+                "  },\n" +
+                "  \"courses\": [\n" +
+                "    {\n" +
+                "      \"title\": \"Selenium Python\",\n" +
+                "      \"price\": 50,\n" +
+                "      \"copies\": 6\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"title\": \"Selenium Python\",\n" +
+                "      \"price\": 50,\n" +
+                "      \"copies\": 6\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"title\": \"Selenium Python\",\n" +
+                "      \"price\": 50,\n" +
+                "      \"copies\": 6\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+    }
 }
