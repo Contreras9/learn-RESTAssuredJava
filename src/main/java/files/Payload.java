@@ -24,7 +24,7 @@ public class Payload {
     public static String coursePrice() {
         return "{\n" +
                 "  \"dashboard\": {\n" +
-                "    \"purchaseAmount\": 910,\n" +
+                "    \"purchaseAmount\": 1162,\n" +
                 "    \"website\": \"rahulshettyacademy.com/\"\n" +
                 "  },\n" +
                 "  \"courses\": [\n" +
