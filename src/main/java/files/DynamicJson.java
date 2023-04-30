@@ -10,10 +10,10 @@ import static io.restassured.RestAssured.*;
 public class DynamicJson {
 
     @Test(dataProvider = "BooksData")
-    public void addBook() {
+    public void addBook(String isbn, String aisle) {
         RestAssured.baseURI = "http://216.10.245.166";
         String response = given().log().all().header("Content-Type", "application/json")
-                .body(Payload.addBook("adsfs", "6464565"))
+                .body(Payload.addBook(isbn, aisle))
                 .when().post("/Library/Addbook.php")
                 .then().log().all().assertThat().statusCode(200)
                 .extract().response().asString();
@@ -22,8 +22,8 @@ public class DynamicJson {
         System.out.println(id);
     }
 
-    @DataProvider(name = "BookData")
+    @DataProvider(name = "BooksData")
     public Object[][] getData() {
-        return new Object[][] {{"ojfwty", "9363"},{"cwetee", "4253"},{"okmfet", "533"}};
+        return new Object[][] {{"ojfwty", "9363445"},{"cwetee", "425344"},{"okmfet", "533444"}};
     }
 }
