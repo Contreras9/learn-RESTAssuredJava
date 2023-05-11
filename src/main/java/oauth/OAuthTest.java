@@ -47,7 +47,6 @@ public class OAuthTest {
         JsonPath jsonPath = new JsonPath(accessTokenResponse);
         String accessToken = jsonPath.getString("access_token");
 
-
         String response = given().queryParam("access_token", accessToken)
                 .when().log().all().get("https://rahulshettyacademy.com/getCourse.php").asString();
 
