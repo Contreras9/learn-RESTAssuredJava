@@ -5,8 +5,15 @@ import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
+import pojo.Api;
 import pojo.GetCourse;
+import pojo.WebAutomation;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
 
@@ -32,8 +39,10 @@ public class OAuthTest {
         String url = driver.getCurrentUrl();
          */
 
-        String url = "https://rahulshettyacademy.com/getCourse.php?state=verifyfjdss&code=4%2F0AbUR2VOQPAk9ctLpHLvUSoNErNpRLJPWkSJdbiImjokxSKoUJmxNlgpOtIXEdf_pXNrYnw&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none";
+        String url = "https://rahulshettyacademy.com/getCourse.php?state=verifyfjdss&code=4%2F0AbUR2VO42qsgAKOU23H3TEukRoHnS6Xt_WUgPfUu0DzmtSdnxq5sf1ZS0_u03zwCIo2yDA&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none";
 
+
+        String[] courseTitles = {"Selenium Webdriver Java", "Cypress", "Protractor"};
         String partialCode = url.split("code=")[1];
         String code = partialCode.split("&scope")[0];
         System.out.println(code);
@@ -55,6 +64,29 @@ public class OAuthTest {
         System.out.println(gc.getLinkedIn());
 
         System.out.println(gc.getInstructor());
+
+        System.out.println(gc.getCourses().getApi().get(1).getCourseTitle());
+
+        List<Api> apiCourses = gc.getCourses().getApi();
+
+        for (int i = 0; i < apiCourses.size(); i++) {
+            if (apiCourses.get(i).getCourseTitle().equalsIgnoreCase("SoapUI Webservices testing")) {
+                System.out.println(apiCourses.get(i).getPrice());
+            }
+        }
+
+
+        ArrayList<String> arrList = new ArrayList<>();
+        List<WebAutomation> webAuto = gc.getCourses().getWebAutomation();
+
+        for (int j = 0; j < webAuto.size(); j++) {
+            arrList.add(webAuto.get(j).getCourseTitle());
+        }
+
+        List<String> expectedList = Arrays.asList(courseTitles);
+
+        Assert.assertTrue(arrList.equals(expectedList));
+
 
 //        System.out.println(response);
     }
