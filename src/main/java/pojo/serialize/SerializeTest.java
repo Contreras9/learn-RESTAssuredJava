@@ -1,4 +1,4 @@
-package serialize;
+package pojo.serialize;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
