@@ -1,9 +1,11 @@
 package oauth;
 
+import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pojo.GetCourse;
 
 
 import static io.restassured.RestAssured.*;
@@ -30,7 +32,7 @@ public class OAuthTest {
         String url = driver.getCurrentUrl();
          */
 
-        String url = "https://rahulshettyacademy.com/getCourse.php?state=verifyfjdss&code=4%2F0AbUR2VO-7I7Q5CCIXAVO8O9pVFdO9_l_wMgrNKef7B2InPalk0dQfKXcT24PyySjvfCxzw&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none";
+        String url = "https://rahulshettyacademy.com/getCourse.php?state=verifyfjdss&code=4%2F0AbUR2VOQPAk9ctLpHLvUSoNErNpRLJPWkSJdbiImjokxSKoUJmxNlgpOtIXEdf_pXNrYnw&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none";
 
         String partialCode = url.split("code=")[1];
         String code = partialCode.split("&scope")[0];
@@ -47,9 +49,13 @@ public class OAuthTest {
         JsonPath jsonPath = new JsonPath(accessTokenResponse);
         String accessToken = jsonPath.getString("access_token");
 
-        String response = given().queryParam("access_token", accessToken)
-                .when().log().all().get("https://rahulshettyacademy.com/getCourse.php").asString();
+        GetCourse gc = given().queryParam("access_token", accessToken).expect().defaultParser(Parser.JSON)
+                .when().get("https://rahulshettyacademy.com/getCourse.php").as(GetCourse.class);
 
-        System.out.println(response);
+        System.out.println(gc.getLinkedIn());
+
+        System.out.println(gc.getInstructor());
+
+//        System.out.println(response);
     }
 }

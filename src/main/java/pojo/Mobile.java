@@ -1,22 +1,22 @@
 package pojo;
 
 public class Mobile {
-    private String[] courseTitle;
-    private String[] price;
+    private String courseTitle;
+    private String price;
 
-    public String[] getCourseTitle() {
+    public String getCourseTitle() {
         return courseTitle;
     }
 
-    public void setCourseTitle(String[] courseTitle) {
+    public void setCourseTitle(String courseTitle) {
         this.courseTitle = courseTitle;
     }
 
-    public String[] getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(String[] price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }
